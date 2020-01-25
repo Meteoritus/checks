@@ -1,14 +1,12 @@
-package model;
+package group.check.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "plant")
-public class Plant {
+public class Plant extends ProductionControl{
 
     @Id
     @Column(name = "code_plant")
@@ -16,6 +14,9 @@ public class Plant {
 
     @Column(name = "plant_name")
     private String plantName;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "plant")
+    private Set<Checks> checks;
 
     public int getCodePlant() {
         return codePlant;

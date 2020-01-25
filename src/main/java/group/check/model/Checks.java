@@ -1,4 +1,4 @@
-package model;
+package group.check.model;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -6,27 +6,33 @@ import java.util.Date;
 
 @Entity
 @Table(name = "checks")
-public class Checks {
+public class Checks extends ProductionControl {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "code_plant")
+    private Plant plant;
+
     @Column(name = "check_date")
     private Date checkDate;
 
-    @Column(name = "id_inspector")
-    private int idInspector;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_inspector", nullable = false)
+    private Employee inspector;
 
     @Column(name = "check_list")
     private String checkList;
 
-    @Column(name = "id_object_of_control")
-    private int idObjectOfControl;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_object_of_control")
+    private ObjectsOfControl objectOfControl;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_detail_object_of_control", nullable = false)
-    private int idDetailObjectOfControl;
+    private DetailsObjectOfControl detailsObjectOfControl;
 
     @Column(name = "comment_check")
     private String commentCheck;
@@ -43,8 +49,9 @@ public class Checks {
     @Column(name = "term_of_elimination")
     private Date termOfElimination;
 
-    @Column(name = "id_executor")
-    private int idExecutor;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_executor", nullable = false)
+    private Employee executor;
 
     @Column(name = "photo_after")
     private String photoAfter;
@@ -60,6 +67,14 @@ public class Checks {
         this.id = id;
     }
 
+/*    public int getCodePlant() {
+        return codePlant;
+    }
+
+    public void setCodePlant(int codePlant) {
+        this.codePlant = codePlant;
+    }*/
+
     public Date getCheckDate() {
         return checkDate;
     }
@@ -68,13 +83,13 @@ public class Checks {
         this.checkDate = checkDate;
     }
 
-    public int getIdInspector() {
+/*    public int getIdInspector() {
         return idInspector;
     }
 
     public void setIdInspector(int idInspector) {
         this.idInspector = idInspector;
-    }
+    }*/
 
     public String getCheckList() {
         return checkList;
@@ -84,7 +99,7 @@ public class Checks {
         this.checkList = checkList;
     }
 
-    public int getIdObjectOfControl() {
+/*    public int getIdObjectOfControl() {
         return idObjectOfControl;
     }
 
@@ -98,7 +113,7 @@ public class Checks {
 
     public void setIdDetailObjectOfControl(int idDetailObjectOfControl) {
         this.idDetailObjectOfControl = idDetailObjectOfControl;
-    }
+    }*/
 
     public String getCommentCheck() {
         return commentCheck;
@@ -140,13 +155,13 @@ public class Checks {
         this.termOfElimination = termOfElimination;
     }
 
-    public int getIdExecutor() {
+/*    public int getIdExecutor() {
         return idExecutor;
     }
 
     public void setIdExecutor(int idExecutor) {
         this.idExecutor = idExecutor;
-    }
+    }*/
 
     public String getPhotoAfter() {
         return photoAfter;
@@ -169,16 +184,12 @@ public class Checks {
         return "Checks{" +
                 "id=" + id +
                 ", checkDate=" + checkDate +
-                ", idInspector=" + idInspector +
-                ", checkList='" + checkList + '\'' +
-                ", idObjectOfControl=" + idObjectOfControl +
-                ", idDetailObjectOfControl=" + idDetailObjectOfControl +
+                ", checkList='" + checkList + '\''  +
                 ", commentCheck='" + commentCheck + '\'' +
                 ", repeatedViolation=" + repeatedViolation +
                 ", events='" + events + '\'' +
                 ", photoBefore='" + photoBefore + '\'' +
                 ", termOfElimination=" + termOfElimination +
-                ", idExecutor=" + idExecutor +
                 ", photoAfter='" + photoAfter + '\'' +
                 ", note='" + note + '\'' +
                 '}';

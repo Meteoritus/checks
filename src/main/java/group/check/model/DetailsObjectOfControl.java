@@ -1,4 +1,4 @@
-package model;
+package group.check.model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "details_object_of_control")
-public class DetailsObjectOfControl {
+public class DetailsObjectOfControl extends ProductionControl{
 
     @Id
     @Column(name = "id")
@@ -16,7 +16,7 @@ public class DetailsObjectOfControl {
     @Column(name = "detail_object_of_control")
     private String detailObjectOfControl;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id_detail_object_of_control")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "detailsObjectOfControl")
     private Set<Checks> checks;
 
     public int getId() {
