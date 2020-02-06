@@ -9,7 +9,7 @@ import java.util.Set;
 public class DetailsObjectOfControl extends ProductionControl{
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

@@ -61,4 +61,34 @@ public class ChecksServiceImpl implements ChecksService {
     public <E extends ProductionControl> void edit(E e) {
         checksDAO.edit(e);
     }
+
+    @Override
+    @Transactional
+    public Checks getByCheckId(int id) {
+        return checksDAO.getByCheckId(id);
+    }
+
+    @Override
+    @Transactional
+    public DetailsObjectOfControl getByDetailId(int id) {
+        return checksDAO.getByDetailId(id);
+    }
+
+    @Override
+    @Transactional
+    public Employee getByEmployeeId(int id) {
+        return checksDAO.getByEmployeeId(id);
+    }
+
+    @Override
+    @Transactional
+    public ObjectsOfControl getByObjectOfControlId(int id) {
+        return checksDAO.getByObjectOfControlId(id);
+    }
+
+    @Override
+    @Transactional
+    public Plant getByPlantId(int id) {
+        return checksDAO.getByPlantId(id);
+    }
 }

@@ -1,7 +1,8 @@
 package group.check.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Set;
 
 
 @Entity
@@ -66,6 +67,7 @@ public class Checks extends ProductionControl {
     public void setId(int id) {
         this.id = id;
     }
+
 
 /*    public int getCodePlant() {
         return codePlant;

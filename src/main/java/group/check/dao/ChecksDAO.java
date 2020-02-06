@@ -2,6 +2,7 @@ package group.check.dao;
 
 
 import group.check.model.*;
+import org.hibernate.annotations.Check;
 
 import java.util.List;
 
@@ -14,6 +15,11 @@ public interface ChecksDAO {
     <E extends ProductionControl> void add(E e);
     <E extends ProductionControl> void delete(E e);
     <E extends ProductionControl> void edit(E e);
+    Checks getByCheckId(int id);
+    DetailsObjectOfControl getByDetailId(int id);
+    Employee getByEmployeeId(int id);
+    ObjectsOfControl getByObjectOfControlId(int id);
+    Plant getByPlantId(int id);
 
 
     /*void add(DetailsObjectOfControl detailsObjectOfControl);

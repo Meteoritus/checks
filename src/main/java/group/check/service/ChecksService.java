@@ -14,4 +14,9 @@ public interface ChecksService {
     <E extends ProductionControl> void add(E e);
     <E extends ProductionControl> void delete(E e);
     <E extends ProductionControl> void edit(E e);
+    Checks getByCheckId(int id);
+    DetailsObjectOfControl getByDetailId(int id);
+    Employee getByEmployeeId(int id);
+    ObjectsOfControl getByObjectOfControlId(int id);
+    Plant getByPlantId(int id);
 }
