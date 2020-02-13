@@ -3,11 +3,11 @@ package group.check.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+
 
 
 @Configuration
@@ -16,12 +16,21 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
-    ViewResolver viewResolver(){
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/pages/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
+    public FreeMarkerViewResolver getFreeMarkerViewResolver(){
+        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+        resolver.setCache(false);
+        resolver.setPrefix("");
+        resolver.setSuffix(".ftl");
+        resolver.setContentType("text/html; charset=UTF-8");
+        return resolver;
     }
 
+    @Bean
+    public FreeMarkerConfigurer getFreemarkerConfig() {
+        FreeMarkerConfigurer config = new FreeMarkerConfigurer();
+        config.setTemplateLoaderPath("/WEB-INF/pages/");
+        config.setDefaultEncoding("UTF-8");
+        return config;
+    }
 
 }

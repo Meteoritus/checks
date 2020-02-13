@@ -15,7 +15,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="hibernate.cfg.xml" value="6d55a8ae-f613-4ad0-85c7-1596804f09c4" />
           <unit-entry name="sessionFactory" value="8b96bc5c-360e-47a2-8b97-afb52578c76c" />
         </datasource-map>
         <naming-strategy-map />
@@ -73,6 +73,7 @@
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:4.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:jquery:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:popper.js:1.14.3" level="project" />
-    <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.3.7.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.29" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:4.3.25.RELEASE" level="project" />
   </component>
 </module>
