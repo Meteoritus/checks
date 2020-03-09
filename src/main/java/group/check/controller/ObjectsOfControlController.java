@@ -1,6 +1,5 @@
 package group.check.controller;
 
-import group.check.model.DetailsObjectOfControl;
 import group.check.model.ObjectsOfControl;
 import group.check.service.ChecksService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -16,8 +16,8 @@
     <input type="text" name="fio" id="fio">
     <label for="department">Отдел</label>
     <input type="text" name="department" id="department">
-    <label for="employeeRole">Роль</label>
-    <input type="text" name="employeeRole" id="employeeRole">
+    <label for="employeeRole">Проверяющий</label>
+    <input type="checkbox" name="employeeRole" id="employeeRole">
     <#if (employee.tabNumber)??>
         <input type="submit" value="Редактировать УЗ сотрудника">
     <#else>

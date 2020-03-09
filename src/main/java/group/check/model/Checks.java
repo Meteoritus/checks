@@ -32,7 +32,7 @@ public class Checks extends ProductionControl {
     private ObjectsOfControl objectOfControl;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id_detail_object_of_control", nullable = false)
+    @JoinColumn(name = "id_detail_object_of_control")
     private DetailsObjectOfControl detailsObjectOfControl;
 
     @Column(name = "comment_check")
@@ -50,7 +50,7 @@ public class Checks extends ProductionControl {
     @Column(name = "term_of_elimination")
     private Date termOfElimination;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_executor", nullable = false)
     private Employee executor;
 
@@ -68,15 +68,6 @@ public class Checks extends ProductionControl {
         this.id = id;
     }
 
-
-/*    public int getCodePlant() {
-        return codePlant;
-    }
-
-    public void setCodePlant(int codePlant) {
-        this.codePlant = codePlant;
-    }*/
-
     public Date getCheckDate() {
         return checkDate;
     }
@@ -85,14 +76,6 @@ public class Checks extends ProductionControl {
         this.checkDate = checkDate;
     }
 
-/*    public int getIdInspector() {
-        return idInspector;
-    }
-
-    public void setIdInspector(int idInspector) {
-        this.idInspector = idInspector;
-    }*/
-
     public String getCheckList() {
         return checkList;
     }
@@ -100,22 +83,6 @@ public class Checks extends ProductionControl {
     public void setCheckList(String checkList) {
         this.checkList = checkList;
     }
-
-/*    public int getIdObjectOfControl() {
-        return idObjectOfControl;
-    }
-
-    public void setIdObjectOfControl(int idObjectOfControl) {
-        this.idObjectOfControl = idObjectOfControl;
-    }
-
-    public int getIdDetailObjectOfControl() {
-        return idDetailObjectOfControl;
-    }
-
-    public void setIdDetailObjectOfControl(int idDetailObjectOfControl) {
-        this.idDetailObjectOfControl = idDetailObjectOfControl;
-    }*/
 
     public String getCommentCheck() {
         return commentCheck;
@@ -157,14 +124,6 @@ public class Checks extends ProductionControl {
         this.termOfElimination = termOfElimination;
     }
 
-/*    public int getIdExecutor() {
-        return idExecutor;
-    }
-
-    public void setIdExecutor(int idExecutor) {
-        this.idExecutor = idExecutor;
-    }*/
-
     public String getPhotoAfter() {
         return photoAfter;
     }
@@ -181,6 +140,46 @@ public class Checks extends ProductionControl {
         this.note = note;
     }
 
+    public Plant getPlant() {
+        return plant;
+    }
+
+    public Employee getInspector() {
+        return inspector;
+    }
+
+    public ObjectsOfControl getObjectOfControl() {
+        return objectOfControl;
+    }
+
+    public DetailsObjectOfControl getDetailsObjectOfControl() {
+        return detailsObjectOfControl;
+    }
+
+    public Employee getExecutor() {
+        return executor;
+    }
+
+    public void setPlant(Plant plant) {
+        this.plant = plant;
+    }
+
+    public void setInspector(Employee inspector) {
+        this.inspector = inspector;
+    }
+
+    public void setObjectOfControl(ObjectsOfControl objectOfControl) {
+        this.objectOfControl = objectOfControl;
+    }
+
+    public void setDetailsObjectOfControl(DetailsObjectOfControl detailsObjectOfControl) {
+        this.detailsObjectOfControl = detailsObjectOfControl;
+    }
+
+    public void setExecutor(Employee executor) {
+        this.executor = executor;
+    }
+
     @Override
     public String toString() {
         return "Checks{" +
@@ -195,5 +194,43 @@ public class Checks extends ProductionControl {
                 ", photoAfter='" + photoAfter + '\'' +
                 ", note='" + note + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Checks)) return false;
+
+        Checks checks = (Checks) o;
+
+        if (getId() != checks.getId()) return false;
+        if (isRepeatedViolation() != checks.isRepeatedViolation()) return false;
+        if (!getCheckDate().equals(checks.getCheckDate())) return false;
+        if (getCheckList() != null ? !getCheckList().equals(checks.getCheckList()) : checks.getCheckList() != null)
+            return false;
+        if (!getCommentCheck().equals(checks.getCommentCheck())) return false;
+        if (getEvents() != null ? !getEvents().equals(checks.getEvents()) : checks.getEvents() != null) return false;
+        if (getPhotoBefore() != null ? !getPhotoBefore().equals(checks.getPhotoBefore()) : checks.getPhotoBefore() != null)
+            return false;
+        if (!getTermOfElimination().equals(checks.getTermOfElimination())) return false;
+        if (getPhotoAfter() != null ? !getPhotoAfter().equals(checks.getPhotoAfter()) : checks.getPhotoAfter() != null)
+            return false;
+        return getNote() != null ? getNote().equals(checks.getNote()) : checks.getNote() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + getCheckDate().hashCode();
+        result = 31 * result + (getCheckList() != null ? getCheckList().hashCode() : 0);
+        result = 31 * result + getCommentCheck().hashCode();
+        result = 31 * result + (isRepeatedViolation() ? 1 : 0);
+        result = 31 * result + (getEvents() != null ? getEvents().hashCode() : 0);
+        result = 31 * result + (getPhotoBefore() != null ? getPhotoBefore().hashCode() : 0);
+        result = 31 * result + getTermOfElimination().hashCode();
+        result = 31 * result + (getPhotoAfter() != null ? getPhotoAfter().hashCode() : 0);
+        result = 31 * result + (getNote() != null ? getNote().hashCode() : 0);
+        return result;
     }
 }

@@ -6,6 +6,7 @@
         <tr>
             <th>Код завода</th>
             <th>Название</th>
+            <th></th>
         </tr>
     </thead>
     <#list plantsList as plant>

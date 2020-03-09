@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -21,39 +18,78 @@ public class ChecksController {
     @GetMapping(value = "/")
     public ModelAndView allChecks() {
         List<Checks> allChecks = checksService.allChecks();
-            List<Checks> checks = new ArrayList<Checks>();
-            List<Plant> plants = new ArrayList<Plant>();
-            List<DetailsObjectOfControl> details = new ArrayList<DetailsObjectOfControl>();
-            List<Employee> inspectors = new ArrayList<Employee>();
-            List<Employee> executors = new ArrayList<Employee>();
-            List<ObjectsOfControl> objectsOfControls = new ArrayList<ObjectsOfControl>();
-            Iterator it = allChecks.iterator();
-            while (it.hasNext()) {
-                Object rows[] = (Object[]) it.next();
-                Checks check = (Checks) rows[0];
-                Plant plant = (Plant) rows[1];
-                DetailsObjectOfControl detail = (DetailsObjectOfControl) rows[2];
-                Employee inspector = (Employee) rows[3];
-                Employee executor = (Employee) rows[4];
-                ObjectsOfControl objectsOfControl = (ObjectsOfControl) rows[5];
-                checks.add(check);
-                plants.add(plant);
-                details.add(detail);
-                inspectors.add(inspector);
-                executors.add(executor);
-                objectsOfControls.add(objectsOfControl);
-            }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("checks");
-        modelAndView.addObject("plantList", plants);
-        modelAndView.addObject("checkList", checks);
-        modelAndView.addObject("inspectorList", inspectors);
-        modelAndView.addObject("executorList", executors);
-        modelAndView.addObject("objectOfControlList", objectsOfControls);
-        modelAndView.addObject("detailList", details);
+        modelAndView.addObject("checkList", allChecks);
         return modelAndView;
     }
 
+    @GetMapping(value = "/check/edit")
+    public ModelAndView editCheckPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("checkEdit");
+        return modelAndView;
+    }
 
+    @GetMapping(value = "/check/edit/{id}")
+    public ModelAndView editCheckPage(@PathVariable("id") int id) {
+        Checks check = checksService.getByCheckId(id);
+        List<Plant> plants = checksService.allPlants();
+        List<Employee> inspectors = checksService.allInspectors();
+        List<Employee> executors = checksService.allExecutors();
+        List<ObjectsOfControl> objectsOfControls = checksService.allObjectsOfControl();
+        List<DetailsObjectOfControl> details = checksService.allDetails();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("checkEdit");
+        modelAndView.addObject("check", check);
+        modelAndView.addObject("plants", plants);
+        modelAndView.addObject("inspectors", inspectors);
+        modelAndView.addObject("executors", executors);
+        modelAndView.addObject("objectsOfControl", objectsOfControls);
+        modelAndView.addObject("details", details);
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/check/edit")
+    public ModelAndView editCheck(@ModelAttribute("check") Checks check) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        checksService.edit(check);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/check/add")
+    public ModelAndView addCheckPage(){
+        List<Plant> plants = checksService.allPlants();
+        List<Employee> inspectors = checksService.allInspectors();
+        List<Employee> executors = checksService.allExecutors();
+        List<ObjectsOfControl> objectsOfControls = checksService.allObjectsOfControl();
+        List<DetailsObjectOfControl> details = checksService.allDetails();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("checkEdit");
+        modelAndView.addObject("plants", plants);
+        modelAndView.addObject("inspectors", inspectors);
+        modelAndView.addObject("executors", executors);
+        modelAndView.addObject("objectsOfControl", objectsOfControls);
+        modelAndView.addObject("details", details);
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/check/add")
+    public ModelAndView addCheck(@ModelAttribute("check") Checks check){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        checksService.add(check);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/check/delete/{id}")
+    public ModelAndView deleteCheck(@PathVariable("id") int id){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        Checks check = checksService.getByCheckId(id);
+        checksService.delete(check);
+        return modelAndView;
+    }
 
 }

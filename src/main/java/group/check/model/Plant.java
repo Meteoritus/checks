@@ -41,4 +41,23 @@ public class Plant extends ProductionControl{
                 ", plantName='" + plantName + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Plant)) return false;
+
+        Plant plant = (Plant) o;
+
+        if (getCodePlant() != plant.getCodePlant()) return false;
+        return getPlantName() != null ? getPlantName().equals(plant.getPlantName()) : plant.getPlantName() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCodePlant();
+        result = 31 * result + (getPlantName() != null ? getPlantName().hashCode() : 0);
+        return result;
+    }
 }

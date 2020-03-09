@@ -19,7 +19,7 @@ public class Employee extends ProductionControl{
     private String department;
 
     @Column(name = "employee_role")
-    private String employeeRole;
+    private boolean employeeRole;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "inspector")
     private Set<Checks> checks_inspector;
@@ -51,11 +51,11 @@ public class Employee extends ProductionControl{
         this.department = department;
     }
 
-    public String getEmployeeRole() {
+    public boolean getEmployeeRole() {
         return employeeRole;
     }
 
-    public void setEmployeeRole(String employeeRole) {
+    public void setEmployeeRole(boolean employeeRole) {
         this.employeeRole = employeeRole;
     }
 
@@ -67,5 +67,28 @@ public class Employee extends ProductionControl{
                 ", department='" + department + '\'' +
                 ", employeeRole='" + employeeRole + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+
+        Employee employee = (Employee) o;
+
+        if (getTabNumber() != employee.getTabNumber()) return false;
+        if (getEmployeeRole() != employee.getEmployeeRole()) return false;
+        if (getFio() != null ? !getFio().equals(employee.getFio()) : employee.getFio() != null) return false;
+        return getDepartment() != null ? getDepartment().equals(employee.getDepartment()) : employee.getDepartment() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTabNumber();
+        result = 31 * result + (getFio() != null ? getFio().hashCode() : 0);
+        result = 31 * result + (getDepartment() != null ? getDepartment().hashCode() : 0);
+        result = 31 * result + (getEmployeeRole() ? 1 : 0);
+        return result;
     }
 }

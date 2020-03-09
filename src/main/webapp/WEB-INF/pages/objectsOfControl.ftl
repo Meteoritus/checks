@@ -5,6 +5,7 @@
     <thead class="thead-dark">
         <tr>
             <th>Объект контроля</th>
+            <th></th>
         </tr>
     </thead>
         <#list objectsOfControlList as objectOfControl>

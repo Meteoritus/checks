@@ -7,6 +7,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -29,7 +31,15 @@ public class ChecksDAOImpl implements ChecksDAO {
                         "left join c.inspector as inspector " +
                         "left join c.executor as executor " +
                         "left join c.objectOfControl as o ");
-        return query.list();
+        List<Checks> checksList = query.list();
+        List<Checks> checks = new ArrayList<>();
+        Iterator it = checksList.iterator();
+        while (it.hasNext()) {
+            Object rows[] = (Object[]) it.next();
+            Checks check = (Checks) rows[0];
+            checks.add(check);
+        }
+        return checks;
     }
 
     @Override
@@ -42,6 +52,18 @@ public class ChecksDAOImpl implements ChecksDAO {
     public List<Employee> allEmployees() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from Employee").list();
+    }
+
+    @Override
+    public List<Employee> allInspectors() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Employee where employeeRole=true").list();
+    }
+
+    @Override
+    public List<Employee> allExecutors() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Employee where employeeRole=false").list();
     }
 
     @Override

@@ -42,4 +42,23 @@ public class ObjectsOfControl extends ProductionControl{
                 ", objectOfControl='" + objectOfControl + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ObjectsOfControl)) return false;
+
+        ObjectsOfControl that = (ObjectsOfControl) o;
+
+        if (getId() != that.getId()) return false;
+        return getObjectOfControl() != null ? getObjectOfControl().equals(that.getObjectOfControl()) : that.getObjectOfControl() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getObjectOfControl() != null ? getObjectOfControl().hashCode() : 0);
+        return result;
+    }
 }

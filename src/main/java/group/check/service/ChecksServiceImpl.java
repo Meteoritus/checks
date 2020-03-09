@@ -34,6 +34,18 @@ public class ChecksServiceImpl implements ChecksService {
 
     @Override
     @Transactional
+    public List<Employee> allInspectors() {
+        return checksDAO.allInspectors();
+    }
+
+    @Override
+    @Transactional
+    public List<Employee> allExecutors() {
+        return checksDAO.allExecutors();
+    }
+
+    @Override
+    @Transactional
     public List<ObjectsOfControl> allObjectsOfControl() {
         return checksDAO.allObjectsOfControl();
     }

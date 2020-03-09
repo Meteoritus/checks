@@ -5,6 +5,7 @@
     <thead class="thead-dark">
         <tr>
             <th>Детали объекта контроля</th>
+            <th></th>
         </tr>
     </thead>
         <#list detailList as details>

@@ -8,6 +8,7 @@
             <th>ФИО</th>
             <th>Отдел</th>
             <th>Роль</th>
+            <th></th>
         </tr>
     </thead>
         <#list employeeList as employee>
@@ -15,7 +16,7 @@
                 <td>#{employee.tabNumber}</td>
                 <td>${employee.fio}</td>
                 <td>${employee.department}</td>
-                <td>${employee.employeeRole}</td>
+                <td>${employee.employeeRole?string('Проверяющий', '')}</td>
                 <td>
                     <a href="/employees/edit/#{employee.tabNumber}">Редактировать</a>
                     <a href="/employees/delete/#{employee.tabNumber}">Удалить</a>

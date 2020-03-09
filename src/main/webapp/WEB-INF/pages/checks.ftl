@@ -16,23 +16,29 @@
             <th>Исполнитель</th>
             <th>Объект контроля</th>
             <th>Детали объекта контроля</th>
+            <th></th>
         </tr>
     </thead>
-        <#list 0..checkList?size-1 as i>
+        <#list checkList as check>
         <tr>
-                <td>${plantList[i].plantName}</td>
-                <td>${checkList[i].checkDate}</td>
-                <td>${checkList[i].commentCheck}</td>
-                <td>${checkList[i].repeatedViolation?string('Повторно', '')}</td>
-                <td>${(checkList[i].events)!"Отсутствует"}</td>
-                <td>${(checkList[i].photoBefore)!"Отсутствует"}</td>
-                <td>${(checkList[i].photoAfter)!"Отсутствует"}</td>
-                <td>${checkList[i].termOfElimination}</td>
-                <td>${inspectorList[i].fio}</td>
-                <td>${executorList[i].fio}</td>
-                <td>${(objectOfControlList[i].objectOfControl)!"Отсутствует"}</td>
-                <td>${(detailList[i].detailObjectOfControl)!"Отсутствует"}</td>
+                <td>${check.plant.plantName}</td>
+                <td>${check.checkDate}</td>
+                <td>${check.commentCheck}</td>
+                <td>${check.repeatedViolation?string('Повторно', '')}</td>
+                <td>${(check.events)!"Отсутствует"}</td>
+                <td>${(check.photoBefore)!"Отсутствует"}</td>
+                <td>${(check.photoAfter)!"Отсутствует"}</td>
+                <td>${check.termOfElimination}</td>
+                <td>${check.inspector.fio}</td>
+                <td>${check.executor.fio}</td>
+                <td>${(check.objectOfControl.objectOfControl)!"Отсутствует"}</td>
+                <td>${(check.detailsObjectOfControl.detailObjectOfControl)!"Отсутствует"}</td>
+                <td>
+                    <a href="/check/edit/#{check.id}">Редактировать</a>
+                    <a href="/check/delete/#{check.id}">Удалить</a>
+                </td>
         </tr>
         </#list>
 </table>
+<a href="/check/add" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить новое замечание</a>
 </@c.page>
