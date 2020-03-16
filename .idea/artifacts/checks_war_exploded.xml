@@ -39,6 +39,11 @@
           <element id="library" level="project" name="Maven: org.webjars:popper.js:1.14.3" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.29" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.3.25.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:5.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:5.1.1.RELEASE" />
         </element>
       </element>
       <element id="directory" name="META-INF">

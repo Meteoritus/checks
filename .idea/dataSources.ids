@@ -13,8 +13,8 @@
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
-        <introspection-state-number>594</introspection-state-number>
-        <introspection-timestamp>2020-02-13.20:20:53.201</introspection-timestamp>
+        <introspection-state-number>630</introspection-state-number>
+        <introspection-timestamp>2020-03-11.21:50:41.536</introspection-timestamp>
       </schema>
       <sequence id="3" parent="2" name="checks_id_seq">
         <object-id>41041</object-id>
@@ -42,7 +42,7 @@
       </table>
       <table id="9" parent="2" name="employee">
         <object-id>41011</object-id>
-        <state-number>591</state-number>
+        <state-number>630</state-number>
       </table>
       <table id="10" parent="2" name="objects_of_control">
         <object-id>41021</object-id>
@@ -133,7 +133,6 @@
       </key>
       <foreign-key id="29" parent="7" name="checks_id_inspector_fkey">
         <columns>id_inspector</columns>
-        <ref-key>~.employee.employee_pkey</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -151,7 +150,6 @@
       </foreign-key>
       <foreign-key id="32" parent="7" name="checks_id_executor_fkey">
         <columns>id_executor</columns>
-        <ref-key>~.employee.employee_pkey</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -193,9 +191,8 @@
         <data-type>varchar</data-type>
       </column>
       <column id="40" parent="9" name="employee_role">
-        <state-number>591</state-number>
-        <mandatory>1</mandatory>
-        <data-type>varchar</data-type>
+        <state-number>630</state-number>
+        <data-type>boolean</data-type>
       </column>
       <index id="41" parent="9" name="employee_pkey">
         <object-id>41017</object-id>

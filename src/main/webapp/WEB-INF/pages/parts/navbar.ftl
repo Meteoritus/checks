@@ -18,4 +18,8 @@
             </li>
         </ul>
     </div>
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"]/>
+<h5>Добро пожаловать, <@security.authorize access="isAuthenticated()">
+    <@security.authentication property="principal.username"/>
+</@security.authorize></h5>
 </nav>
